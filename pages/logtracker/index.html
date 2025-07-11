@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log Tracker</title>
+
+    <!-- 🔗 Global + Page Styles -->
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/components/nav.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- 🌐 Navbar -->
+    <div id="navbar"></div>
+
+    <!-- 📄 Log Tracker Page -->
+    <main class="main-content container">
+      <section class="log-form">
+        <h2>Add New Log</h2>
+        <form id="logForm">
+          <label for="logType">Type:</label>
+          <select id="logType" required>
+            <option value="">Select Type</option>
+            <option value="Git Commit">Git Commit</option>
+            <option value="Tutorial">Tutorial Learned</option>
+            <option value="Skill">Skill Mastered</option>
+            <option value="Job">Job Applied</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <label for="logDesc">Description:</label>
+          <textarea
+            id="logDesc"
+            rows="3"
+            placeholder="What did you do?"
+            required
+          ></textarea>
+
+          <label for="logDate">Date:</label>
+          <input type="date" id="logDate" required />
+
+          <label for="logStart">Start Time:</label>
+          <input type="time" id="logStart" required />
+
+          <label for="logEnd">End Time:</label>
+          <input type="time" id="logEnd" required />
+
+          <button type="submit">➕ Add Log</button>
+        </form>
+      </section>
+
+      <section class="log-entries">
+        <h2>📋 Today's Logs</h2>
+        <div id="logList" class="log-list"></div>
+      </section>
+    </main>
+
+    <!-- 🚀 Scripts -->
+    <script src="/assets/js/main.js" defer></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>
