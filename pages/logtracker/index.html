@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log Tracker</title>
 
-    <!-- 🔗 Global + Page Styles -->
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="stylesheet" href="/components/nav.css" />
-    <link rel="stylesheet" href="style.css" />
+    <!-- Global + Page Styles -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <link rel="stylesheet" href="../../components/nav.css" />
+    <link rel="stylesheet" href="logstyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body>
-    <!-- 🌐 Navbar -->
+    <!-- Navbar -->
     <div id="navbar"></div>
 
-    <!-- 📄 Log Tracker Page -->
+    <!-- Log Tracker Page -->
     <main class="main-content container">
       <section class="log-form">
         <h2>Add New Log</h2>
@@ -28,7 +33,14 @@
             <option value="Job">Job Applied</option>
             <option value="Other">Other</option>
           </select>
-
+          <div class="other-input hide">
+            <label for="logOther">Other:</label>
+            <input
+              type="text"
+              id="logOther"
+              placeholder="Specify the Other type here"
+            />
+          </div>
           <label for="logDesc">Description:</label>
           <textarea
             id="logDesc"
@@ -48,16 +60,42 @@
 
           <button type="submit">➕ Add Log</button>
         </form>
+        <div id="warningFrame" class="warning hide">
+          <button class="warnClose">&times;</button>
+          <p class="message"></p>
+        </div>
+        <div class="overlay hide"></div>
       </section>
-
+      <section class="log-search">
+        <div class="log-sort">
+          <label for="sortLogs">Sort By:</label>
+          <select id="sortLogs">
+            <option value="" selected>Default</option>
+            <option value="date">Date ↑</option>
+            <option value="type">Type</option>
+            <option value="duration">Duration</option>
+            <option value="time">Start Time</option>
+            <option value="endTime">End Time</option>
+            <option value="description">Description</option>
+          </select>
+        </div>
+        <div class="log-search">
+          <label for="search">Search:</label
+          ><input type="text" id="search" placeholder="Search Logs" /><i
+            class="fas fa-filter filter-icon"
+          ></i
+          ><!--<i class="fas fa-search"></i> -->
+        </div>
+      </section>
       <section class="log-entries">
-        <h2>📋 Today's Logs</h2>
+        <h2 class="logs-head">All Logs</h2>
+
         <div id="logList" class="log-list"></div>
       </section>
     </main>
-
+    <footer id="footer"></footer>
     <!-- 🚀 Scripts -->
-    <script src="/assets/js/main.js" defer></script>
+    <script src="../../assets/js/main.js" defer></script>
     <script src="script.js" defer></script>
   </body>
 </html>

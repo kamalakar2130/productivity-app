@@ -1,16 +1,37 @@
-// 🌐 Dynamic Navbar Load
+// Prevent zooming on mobile devices
+document.addEventListener('touchstart', function(event) {
+    if (event.touches.length > 1) {
+        event.preventDefault();
+    }
+}, { passive: false });
+
+document.addEventListener('gesturestart', function(event) {
+    event.preventDefault();
+}, { passive: false });
+
+// Dynamic Navbar Load errors not found.
 fetch("/components/nav.html")
   .then((res) => res.text())
   .then((data) => {
     document.getElementById("navbar").innerHTML = data;
-    initializeNavbar(); // run setup AFTER nav is injected
+    initializeNavbar();
   });
 
 function initializeNavbar() {
   const burger = document.querySelector(".burger");
   const navMenu = document.querySelector(".nav-links");
 
-  // ✅ Prevent duplicate listeners
+  function closeMenu() {
+    if (navMenu && burger) {
+      navMenu.classList.remove("active");
+      burger.classList.remove("toggle");
+    }
+  }
+
+  // Close menu on page load
+  closeMenu();
+
+  // Prevent duplicate listeners.
   if (burger && navMenu && !burger.dataset.listener) {
     burger.dataset.listener = "true";
 
@@ -19,16 +40,15 @@ function initializeNavbar() {
       burger.classList.toggle("toggle");
     });
 
-    // Close menu when a nav link is clicked (mobile)
+    // Close menu when a nav link is clicked in mobile.
     navMenu.querySelectorAll("a").forEach((link) =>
       link.addEventListener("click", () => {
-        navMenu.classList.remove("active");
-        burger.classList.remove("toggle");
+        closeMenu();
       })
     );
   }
 
-  // 🌟 Highlight active link
+  // Highlight active page link in navbar.
   const currentPath = window.location.pathname;
   const navLinks = document.querySelectorAll(".nav-link");
 
@@ -43,12 +63,37 @@ function initializeNavbar() {
   });
 }
 
-// 🌐 Dynamic Footer Load
+// Dynamic Footer Load
 fetch("/components/footer.html")
   .then((res) => res.text())
   .then((data) => {
     document.getElementById("footer").innerHTML = data;
-  })
-  .catch((err) => {
-    console.error("Error loading footer:", err);
+    initializeFooter();
   });
+function initializeFooter() {
+  const footer = document.querySelector(".footer");
+
+  // Don't proceed if footer isn't found
+  if (!footer) return;
+
+  const footerLinks = footer.querySelectorAll("footer-links a");
+
+  if (footer && footerLinks && !footer.dataset.listener) {
+    footer.dataset.listener = "true";
+
+    footerLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        e.preventDefault();
+        const href = link.getAttribute("href");
+        if (href.startsWith("#")) {
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        } else {
+          window.location.href = href;
+        }
+      });
+    });
+  }
+}
