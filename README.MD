@@ -24,6 +24,7 @@ Local state management & persistence coming soon
 
 📂 Project Structure
 prodapp/
+<<<<<<< HEAD
 ├── public/ # Static assets
 ├── src/
 │ ├── assets/ # Icons, images
@@ -35,6 +36,19 @@ prodapp/
 ├── package.json # Project config & dependencies
 ├── tailwind.config.js # Tailwind customization
 └── README.md # You are here
+=======
+├── public/                   # Static assets
+├── src/
+│   ├── assets/               # Icons, images
+│   ├── components/           # Reusable UI components (Navbar, Sidebar, etc.)
+│   ├── pages/                # Feature pages (LogTracker, TodoList, Planner...)
+│   ├── App.jsx               # Root component
+│   ├── main.jsx              # Entry point (ReactDOM.render)
+│   └── index.css             # Global styles (Tailwind base imports)
+├── package.json              # Project config & dependencies
+├── tailwind.config.js        # Tailwind customization
+└── README.md                 # You are here
+>>>>>>> refs/remotes/origin/react
 
 🛠️ Tech Stack
 
@@ -63,14 +77,26 @@ Clone the repository:
 git clone https://github.com/your-username/prodapp.git
 cd prodapp
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/react
 Install dependencies:
 
 npm install
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/react
 Run the development server:
 
 npm run dev
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/react
 Open in your browser:
 
 http://localhost:5173
