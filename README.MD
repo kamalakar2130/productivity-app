@@ -4,47 +4,54 @@ Features Implemented
 
 Mobile-friendly with burger menu
 
-Smooth open/close transitions
+Smooth open/close animations
 
 ✅ Active Link Highlighting
 
-Current page is visually indicated
+Current page is visually highlighted in the navbar
 
-✅ Reusable Components
+✅ Single Navbar Component
 
-Navbar, sidebar, and other UI elements are modular and reusable
+Reusable nav.html injected dynamically across all pages
 
 ✅ Dynamic Page Navigation
 
-Integrated with React Router for seamless routing
+Pages loaded seamlessly without duplication of navbar code
 
 ✅ Log Tracker (in progress)
 
-Local state management & persistence coming soon
+LocalStorage support for saving logs
+
+Filtering and sorting (planned)
 
 📂 Project Structure
 prodapp/
-├── public/                   # Static assets
-├── src/
-│   ├── assets/               # Icons, images
-│   ├── components/           # Reusable UI components (Navbar, Sidebar, etc.)
-│   ├── pages/                # Feature pages (LogTracker, TodoList, Planner...)
-│   ├── App.jsx               # Root component
-│   ├── main.jsx              # Entry point (ReactDOM.render)
-│   └── index.css             # Global styles (Tailwind base imports)
-├── package.json              # Project config & dependencies
-├── tailwind.config.js        # Tailwind customization
-└── README.md                 # You are here
+├── index.html               # Entry point
+├── components/
+│   ├── nav.html             # Navbar component
+│   └── nav.css              # Navbar styles
+├── assets/
+│   ├── css/
+│   │   └── style.css        # Global styles
+│   └── js/
+│       └── main.js          # Navbar injection & page logic
+├── pages/                   # Individual modules
+│   ├── logtracker/          # Log Tracker UI
+│   ├── todo/                # Todo List (upcoming)
+│   ├── planner/             # Daily/Weekly planner
+│   ├── calendar/            # Calendar & scheduling
+│   └── ...                  # More productivity modules
+└── README.md                # Project documentation
 
 🛠️ Tech Stack
 
-React (Vite) – Component-based frontend
+HTML5 – Semantic structure
 
-TailwindCSS – Utility-first responsive styling
+CSS3 (Flexbox + Grid + Gradients) – Responsive styling
 
-React Router DOM – Client-side routing
+Vanilla JavaScript (ES6+) – Dynamic behavior & component injection
 
-LocalStorage (planned) – Store logs, tasks, habits
+LocalStorage API – Persistent storage for tasks/logs
 
 📌 Upcoming Features
 
@@ -64,19 +71,8 @@ git clone https://github.com/your-username/prodapp.git
 cd prodapp
 
 
-Install dependencies:
-
-npm install
-
-
-Run the development server:
-
-npm run dev
-
-
-Open in your browser:
-
-http://localhost:5173
+Open index.html in your browser.
+USE Vite 
 
 🤝 Contributing
 
