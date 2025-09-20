@@ -1,35 +1,89 @@
-# ProdApp - Productivity Suite
+Features Implemented
 
-Welcome to **ProdApp**, a modular productivity web application designed to track, plan, and enhance your daily workflow.
+✅ Responsive Sidebar + Navbar
 
+Mobile-friendly with burger menu
 
-##  Features Implemented (so far)
+Smooth open/close transitions
 
-- ✅ **Responsive Navbar** with burger menu (mobile friendly)
-- ✅ **Active Link Highlighting**
-- ✅ **Single Navbar Injected Across All Pages**
-- ✅ **Dynamic Page Navigation**
-- ✅ **Log Tracker UI** with localStorage support (in progress)
+✅ Active Link Highlighting
 
----
+Current page is visually indicated
 
-## 🧩 Project Structure
+✅ Reusable Components
 
-```bash
+Navbar, sidebar, and other UI elements are modular and reusable
+
+✅ Dynamic Page Navigation
+
+Integrated with React Router for seamless routing
+
+✅ Log Tracker (in progress)
+
+Local state management & persistence coming soon
+
+📂 Project Structure
 prodapp/
-├── index.html
-├── components/
-│   ├── nav.html         # Navbar HTML snippet
-│   └── nav.css          # Navbar styles
-├── assets/
-│   ├── css/
-│   │   └── style.css    # Global styles
-│   └── js/
-│       └── main.js      # Navbar & routing logic
-├── pages/
-│   ├── logtracker/
-│   ├── todo/
-│   ├── planner/
-│   ├── calendar/
-│   └── ...
-└── README.md            # You are here
+├── public/                   # Static assets
+├── src/
+│   ├── assets/               # Icons, images
+│   ├── components/           # Reusable UI components (Navbar, Sidebar, etc.)
+│   ├── pages/                # Feature pages (LogTracker, TodoList, Planner...)
+│   ├── App.jsx               # Root component
+│   ├── main.jsx              # Entry point (ReactDOM.render)
+│   └── index.css             # Global styles (Tailwind base imports)
+├── package.json              # Project config & dependencies
+├── tailwind.config.js        # Tailwind customization
+└── README.md                 # You are here
+
+🛠️ Tech Stack
+
+React (Vite) – Component-based frontend
+
+TailwindCSS – Utility-first responsive styling
+
+React Router DOM – Client-side routing
+
+LocalStorage (planned) – Store logs, tasks, habits
+
+📌 Upcoming Features
+
+📖 Knowledge Notes – Save and organize notes/code snippets
+
+⏱️ Pomodoro Timer – Focus session with time tracking
+
+📊 Analytics Dashboard – Visualize productivity trends
+
+🧩 Habit Tracker – Track daily habits with streaks
+
+🚀 Getting Started
+
+Clone the repository:
+
+git clone https://github.com/your-username/prodapp.git
+cd prodapp
+
+
+Install dependencies:
+
+npm install
+
+
+Run the development server:
+
+npm run dev
+
+
+Open in your browser:
+
+http://localhost:5173
+
+🤝 Contributing
+
+Contributions are welcome!
+
+Fork the repo
+
+Create a new branch
+
+Submit a pull request
