@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import MenuIcon from "../assets/icons/MenuIcon.jsx";
 import CloseIcon from "../assets/icons/CloseIcon.jsx";
@@ -11,14 +11,14 @@ const NAV_LINKS = [
   { page: "Planner", path: "/planner" },
   { page: "Profile", path: "/profile" },
   { page: "Focus Session", path: "/focusSession" },
-  { page: "Code/Commmit Tracker", path: "/commitTracker" },
+  { page: "Code/Commit Tracker", path: "/commitTracker" },
   { page: "Knowledge Notes", path: "/techNotes" },
   { page: "Habit Tracker", path: "/habitTracker" },
 ];
 
 export default function Header() {
   const located = useLocation();
-  const isActive = useMemo(() => (path) => located.pathname === path, [located.pathname]);
+  const isActive = useCallback((path) => located.pathname === path, [located.pathname]);
   const [open, setOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 

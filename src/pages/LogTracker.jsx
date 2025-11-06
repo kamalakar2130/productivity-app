@@ -35,7 +35,7 @@ export default function LogTracker() {
     const { id, value } = e.target;
     setFormData(prev => ({ ...prev, [id]: value }));
     if (id === "logType") setShowOther(value === "Other");
-  }, []);
+  }, [setFormData, setShowOther]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

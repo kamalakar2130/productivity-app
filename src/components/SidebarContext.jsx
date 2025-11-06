@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
 
 const SidebarContext = createContext();
 
@@ -12,7 +12,7 @@ export function SidebarProvider({ children }) {
     localStorage.setItem("sidebarOpen", sidebarOpen);
   }, [sidebarOpen]);
 
-  const value = { sidebarOpen, setSidebarOpen };
+  const value = useMemo(() => ({ sidebarOpen, setSidebarOpen }), [sidebarOpen]);
 
   return (
     <SidebarContext.Provider value={value}>
