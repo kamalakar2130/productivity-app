@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import MenuIcon from "../assets/icons/MenuIcon.jsx";
 import CloseIcon from "../assets/icons/CloseIcon.jsx";
-export default function Header() {
-  const links = [
-    { page: "Home", path: "/" },
-    { page: "Log Tracker", path: "/logTracker" },
-    { page: "Todo List", path: "/todoList" },
-    { page: "Planner", path: "/planner" },
-    { page: "Profile", path: "/profile" },
-    { page: "Focus Session", path: "/focusSession" },
-    { page: "Code/Commmit Tracker", path: "/commitTracker" },
-    { page: "Knowledge Notes", path: "/techNotes" },
-    { page: "Habit Tracker", path: "/habitTracker" },
-  ];
 
+// Extract navigation links to avoid recreating on every render
+const NAV_LINKS = [
+  { page: "Home", path: "/" },
+  { page: "Log Tracker", path: "/logTracker" },
+  { page: "Todo List", path: "/todoList" },
+  { page: "Planner", path: "/planner" },
+  { page: "Profile", path: "/profile" },
+  { page: "Focus Session", path: "/focusSession" },
+  { page: "Code/Commmit Tracker", path: "/commitTracker" },
+  { page: "Knowledge Notes", path: "/techNotes" },
+  { page: "Habit Tracker", path: "/habitTracker" },
+];
+
+export default function Header() {
   const located = useLocation();
-  const isActive = (path) => located.pathname === path;
+  const isActive = useMemo(() => (path) => located.pathname === path, [located.pathname]);
   const [open, setOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
@@ -29,12 +31,11 @@ export default function Header() {
           </h1>
         </Link>
         <nav className="">
-          {links.map((link) => {
-            return (
-              <Link
-                key={link.page}
-                to={link.path}
-                className={`relative inline-block px-3 py-2 rounded-lg transition-all duration-500 ease-in-out
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.page}
+              to={link.path}
+              className={`relative inline-block px-3 py-2 rounded-lg transition-all duration-500 ease-in-out
           after:content-[''] after:absolute after:left-0 after:-bottom-1
           after:h-[2px] after:transition-all after:duration-300 after:ease-in-out
           ${
@@ -42,11 +43,10 @@ export default function Header() {
               ? "text-[#61ff79] font-bold after:w-full after:bg-[#61ff79] bg-white/5 backdrop-blur-md border border-white/10 shadow-md"
               : "text-white after:w-0 after:bg-[#ff6161] hover:text-[#61ff79] hover:after:w-full hover:after:bg-[#61ff6e]"
           }`}
-              >
-                {link.page}
-              </Link>
-            );
-          })}
+            >
+              {link.page}
+            </Link>
+          ))}
         </nav>
       </header>
 
@@ -75,7 +75,7 @@ export default function Header() {
 
         {/* Nav Links */}
         <nav className="flex flex-col space-y-4">
-          {links.map((link) => (
+          {NAV_LINKS.map((link) => (
             <Link
               key={link.page}
               to={link.path}
@@ -121,23 +121,21 @@ export default function Header() {
           }`}
         >
           <ul className="mt-4 space-y-2 pl-2 focus:text-[#61ff79]">
-            {links.map((link) => {
-              return (
-                <li key={link.page}>
-                  <Link
-                    to={link.path}
-                    className={`relative inline-block px-3 py-2 rounded-lg transition-colors duration-300
+            {NAV_LINKS.map((link) => (
+              <li key={link.page}>
+                <Link
+                  to={link.path}
+                  className={`relative inline-block px-3 py-2 rounded-lg transition-colors duration-300
           ${
             isActive(link.path)
               ? "text-[#61ff79] font-bold bg-white/10 backdrop-blur-md border border-white/20 shadow-md"
               : "text-white hover:text-[#61ff79]"
           }`}
-                  >
-                    {link.page}
-                  </Link>
-                </li>
-              );
-            })}
+                >
+                  {link.page}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </header>

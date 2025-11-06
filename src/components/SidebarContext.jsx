@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const SidebarContext = createContext();
 
@@ -12,13 +12,16 @@ export function SidebarProvider({ children }) {
     localStorage.setItem("sidebarOpen", sidebarOpen);
   }, [sidebarOpen]);
 
+  const value = { sidebarOpen, setSidebarOpen };
+
   return (
-    <SidebarContext.Provider value={{ sidebarOpen, setSidebarOpen }}>
+    <SidebarContext.Provider value={value}>
       {children}
     </SidebarContext.Provider>
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useSidebar() {
   return useContext(SidebarContext);
 }
