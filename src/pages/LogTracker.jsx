@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 
 export default function LogTracker() {
   const [logs, setLogs] = useState(
@@ -31,11 +31,11 @@ export default function LogTracker() {
     }));
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    setFormData(prev => ({ ...prev, [id]: value }));
     if (id === "logType") setShowOther(value === "Other");
-  };
+  }, []); // State setters are stable and don't need to be in dependencies
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,18 +77,24 @@ export default function LogTracker() {
     setWarning("");
   };
 
-  const filteredLogs = logs
-    .filter(
+  // Memoize filtered and sorted logs to avoid recalculating on every render
+  const filteredLogs = useMemo(() => {
+    const searchLower = searchTerm.toLowerCase();
+    const filtered = logs.filter(
       (log) =>
-        log.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        log.desc.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) => {
+        log.type.toLowerCase().includes(searchLower) ||
+        log.desc.toLowerCase().includes(searchLower)
+    );
+
+    if (sortBy === "default") return filtered;
+
+    return [...filtered].sort((a, b) => {
       if (sortBy === "date") return new Date(a.date) - new Date(b.date);
       if (sortBy === "type") return a.type.localeCompare(b.type);
       if (sortBy === "desc") return a.desc.localeCompare(b.desc);
       return 0;
     });
+  }, [logs, searchTerm, sortBy]);
 
   return (
     <main className="font-sans text-gray-800">
